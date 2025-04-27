@@ -31,5 +31,6 @@ clean:
 	rm -f bar.png line.png scatter.png
 
 show: clean compile
+	python3 PDFtoCSV.py
 	python3 out.py
 
