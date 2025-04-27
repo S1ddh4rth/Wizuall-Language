@@ -550,12 +550,12 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    29,    29,    30,    31,    34,    35,    39,    48,    58,
-      68,    72,    72,    79,    79,    86,    90,    94,    98,   102,
-     102,   109,   113,   113,   131,   134,   140,   143,   151,   154,
-     159,   165,   173,   176,   184,   185,   186,   187,   188,   189,
-     193,   194,   195,   196,   197,   198,   199,   203,   206,   209,
-     212
+       0,    29,    29,    30,    31,    34,    35,    39,    52,    66,
+      79,    83,    83,    90,    90,    97,   101,   105,   109,   113,
+     113,   120,   124,   124,   142,   145,   151,   154,   162,   165,
+     170,   176,   184,   187,   195,   196,   197,   198,   199,   200,
+     204,   205,   206,   207,   208,   209,   210,   214,   217,   220,
+     223
 };
 #endif
 
@@ -1214,367 +1214,378 @@ yyreduce:
   case 7: /* statement: LINE ID ID SC  */
 #line 39 "yacc.y"
                   {
-        fprintf(output,
-    "plt.figure(figsize=(8, 4))\n"
-    "plt.plot(df['%s'], df['%s'])\n"
-    "plt.xlabel('%s')\n"
-    "plt.ylabel('%s')\n"
-    "plt.savefig('line.png')\n",
-    (yyvsp[-2].str), (yyvsp[-1].str), (yyvsp[-2].str), (yyvsp[-1].str));
+        print_indent();
+        fprintf(output, "plt.figure(figsize=(8, 4))\n");
+        print_indent();
+        fprintf(output, "plt.plot(df['%s'], df['%s'])\n", (yyvsp[-2].str), (yyvsp[-1].str));
+        print_indent();
+        fprintf(output, "plt.xlabel('%s')\n", (yyvsp[-2].str));
+        print_indent();
+        fprintf(output, "plt.ylabel('%s')\n", (yyvsp[-1].str));
+        print_indent();
+        fprintf(output, "plt.savefig('line.png')\n");
+
     }
-#line 1226 "yacc.tab.c"
+#line 1230 "yacc.tab.c"
     break;
 
   case 8: /* statement: BAR ID SC  */
-#line 48 "yacc.y"
+#line 52 "yacc.y"
               {
-        fprintf(output,
-    "plt.figure(figsize=(8, 4))\n"
-    "plt.hist(df['%s'])\n"
-    "plt.xlabel('%s')\n"
-    "plt.ylabel('Frequency')\n"
-    "plt.savefig('bar.png')\n",
-    (yyvsp[-1].str), (yyvsp[-1].str));
+        print_indent();
+        fprintf(output, "plt.figure(figsize=(8, 4))\n");
+        print_indent();
+        fprintf(output, "plt.hist(df['%s'])\n", (yyvsp[-1].str));
+        print_indent();
+        fprintf(output, "plt.xlabel('%s')\n", (yyvsp[-1].str));
+        print_indent();
+        fprintf(output, "plt.ylabel('Frequency')\n");
+        print_indent();
+        fprintf(output, "plt.savefig('bar.png')\n");
+        print_indent();
 
     }
-#line 1241 "yacc.tab.c"
+#line 1249 "yacc.tab.c"
     break;
 
   case 9: /* statement: SCATTER ID ID SC  */
-#line 58 "yacc.y"
+#line 66 "yacc.y"
                      {
-        fprintf(output,
-    "plt.figure(figsize=(8, 4))\n"
-    "plt.scatter(df['%s'], df['%s'])\n"
-    "plt.xlabel('%s')\n"
-    "plt.ylabel('%s')\n"
-    "plt.savefig('scatter.png')\n",
-    (yyvsp[-2].str), (yyvsp[-1].str), (yyvsp[-2].str), (yyvsp[-1].str));
+        print_indent();
+        fprintf(output, "plt.figure(figsize=(8, 4))\n");
+        print_indent();
+        fprintf(output, "plt.scatter(df['%s'], df['%s'])\n", (yyvsp[-2].str), (yyvsp[-1].str));
+        print_indent();
+        fprintf(output, "plt.xlabel('%s')\n", (yyvsp[-2].str));
+        print_indent();
+        fprintf(output, "plt.ylabel('%s')\n", (yyvsp[-1].str));
+        print_indent();
+        fprintf(output, "plt.savefig('scatter.png')\n");
 
     }
-#line 1256 "yacc.tab.c"
+#line 1267 "yacc.tab.c"
     break;
 
   case 10: /* statement: PRINT LPAR expr RPAR SC  */
-#line 68 "yacc.y"
+#line 79 "yacc.y"
                             {
         print_indent();
         fprintf(output, "print(%s)\n", (yyvsp[-2].str));
     }
-#line 1265 "yacc.tab.c"
+#line 1276 "yacc.tab.c"
     break;
 
   case 11: /* $@1: %empty  */
-#line 72 "yacc.y"
+#line 83 "yacc.y"
                                     {
         print_indent();
         fprintf(output, "for %s in range(%s, %s+1):\n", (yyvsp[-5].str), (yyvsp[-3].str), (yyvsp[-1].str));
         indent++;
     }
-#line 1275 "yacc.tab.c"
+#line 1286 "yacc.tab.c"
     break;
 
   case 12: /* statement: FOR ID FROM expr TO expr LCURL $@1 program RCURL  */
-#line 76 "yacc.y"
+#line 87 "yacc.y"
                     {
         indent--;
     }
-#line 1283 "yacc.tab.c"
+#line 1294 "yacc.tab.c"
     break;
 
   case 13: /* $@2: %empty  */
-#line 79 "yacc.y"
+#line 90 "yacc.y"
                                     {
         print_indent();
         fprintf(output, "while %s:\n", (yyvsp[-2].str));
         indent++;
     }
-#line 1293 "yacc.tab.c"
+#line 1304 "yacc.tab.c"
     break;
 
   case 14: /* statement: WHILE LPAR condition RPAR LCURL $@2 program RCURL  */
-#line 83 "yacc.y"
+#line 94 "yacc.y"
                     {
         indent--;
     }
-#line 1301 "yacc.tab.c"
+#line 1312 "yacc.tab.c"
     break;
 
   case 15: /* statement: ID ASSIGN expr SC  */
-#line 86 "yacc.y"
+#line 97 "yacc.y"
                       {
         print_indent();
         fprintf(output, "%s = %s\n", (yyvsp[-3].str), (yyvsp[-1].str));
     }
-#line 1310 "yacc.tab.c"
+#line 1321 "yacc.tab.c"
     break;
 
   case 16: /* statement: ID ASSIGN list SC  */
-#line 90 "yacc.y"
+#line 101 "yacc.y"
                       {
         print_indent();
         fprintf(output, "%s = %s\n", (yyvsp[-3].str), (yyvsp[-1].str));
     }
-#line 1319 "yacc.tab.c"
+#line 1330 "yacc.tab.c"
     break;
 
   case 17: /* statement: ID LPAR expr_list RPAR SC  */
-#line 94 "yacc.y"
+#line 105 "yacc.y"
                              {
         print_indent();
         fprintf(output, "%s(%s)\n", (yyvsp[-4].str), (yyvsp[-2].str));
     }
-#line 1328 "yacc.tab.c"
+#line 1339 "yacc.tab.c"
     break;
 
   case 18: /* statement: ID ASSIGN ID LPAR expr_list RPAR SC  */
-#line 98 "yacc.y"
+#line 109 "yacc.y"
                                         {
         print_indent();
         fprintf(output, "%s = %s(%s)\n", (yyvsp[-6].str), (yyvsp[-4].str), (yyvsp[-2].str));
     }
-#line 1337 "yacc.tab.c"
+#line 1348 "yacc.tab.c"
     break;
 
   case 19: /* $@3: %empty  */
-#line 102 "yacc.y"
+#line 113 "yacc.y"
                                  {
         print_indent();
         fprintf(output, "if %s:\n", (yyvsp[-2].str));
         indent++;
     }
-#line 1347 "yacc.tab.c"
+#line 1358 "yacc.tab.c"
     break;
 
   case 20: /* statement: IF LPAR condition RPAR LCURL $@3 program RCURL  */
-#line 106 "yacc.y"
+#line 117 "yacc.y"
                     {
         indent--;
     }
-#line 1355 "yacc.tab.c"
+#line 1366 "yacc.tab.c"
     break;
 
   case 22: /* $@4: %empty  */
-#line 113 "yacc.y"
+#line 124 "yacc.y"
                                       {
         print_indent();
         fprintf(output, "def %s(%s):\n", (yyvsp[-4].str), (yyvsp[-2].str));
         indent++;
     }
-#line 1365 "yacc.tab.c"
+#line 1376 "yacc.tab.c"
     break;
 
   case 23: /* func_defn: FUN ID LPAR parameters RPAR LCURL $@4 program RCURL  */
-#line 117 "yacc.y"
+#line 128 "yacc.y"
                     {
         indent--;
     }
-#line 1373 "yacc.tab.c"
+#line 1384 "yacc.tab.c"
     break;
 
   case 24: /* parameters: p_items  */
-#line 131 "yacc.y"
+#line 142 "yacc.y"
             {
         (yyval.str) = (yyvsp[0].str);
     }
-#line 1381 "yacc.tab.c"
+#line 1392 "yacc.tab.c"
     break;
 
   case 25: /* parameters: %empty  */
-#line 134 "yacc.y"
+#line 145 "yacc.y"
     {
         (yyval.str) = strdup("");
     }
-#line 1389 "yacc.tab.c"
+#line 1400 "yacc.tab.c"
     break;
 
   case 26: /* p_items: ID  */
-#line 140 "yacc.y"
+#line 151 "yacc.y"
        {
         (yyval.str) = strdup((yyvsp[0].str));
     }
-#line 1397 "yacc.tab.c"
+#line 1408 "yacc.tab.c"
     break;
 
   case 27: /* p_items: p_items COMMA ID  */
-#line 143 "yacc.y"
+#line 154 "yacc.y"
                      {
         char *buf = malloc(strlen((yyvsp[-2].str)) + strlen((yyvsp[0].str)) + 3);
         sprintf(buf, "%s, %s", (yyvsp[-2].str), (yyvsp[0].str));
         (yyval.str) = buf;
     }
-#line 1407 "yacc.tab.c"
+#line 1418 "yacc.tab.c"
     break;
 
   case 28: /* expr_list: expr  */
-#line 151 "yacc.y"
+#line 162 "yacc.y"
          {
         (yyval.str) = strdup((yyvsp[0].str));
     }
-#line 1415 "yacc.tab.c"
+#line 1426 "yacc.tab.c"
     break;
 
   case 29: /* expr_list: expr_list COMMA expr  */
-#line 154 "yacc.y"
+#line 165 "yacc.y"
                          {
         char *buf = malloc(strlen((yyvsp[-2].str)) + strlen((yyvsp[0].str)) + 3);
         sprintf(buf, "%s, %s", (yyvsp[-2].str), (yyvsp[0].str));
         (yyval.str) = buf;
     }
-#line 1425 "yacc.tab.c"
+#line 1436 "yacc.tab.c"
     break;
 
   case 30: /* expr_list: %empty  */
-#line 159 "yacc.y"
+#line 170 "yacc.y"
     {
         (yyval.str) = strdup("");
     }
-#line 1433 "yacc.tab.c"
+#line 1444 "yacc.tab.c"
     break;
 
   case 31: /* list: LBRACK list_items RBRACK  */
-#line 165 "yacc.y"
+#line 176 "yacc.y"
                              {
         char *buf = malloc(strlen((yyvsp[-1].str)) + 3);
         sprintf(buf, "[%s]", (yyvsp[-1].str));
         (yyval.str) = buf;
     }
-#line 1443 "yacc.tab.c"
+#line 1454 "yacc.tab.c"
     break;
 
   case 32: /* list_items: expr  */
-#line 173 "yacc.y"
+#line 184 "yacc.y"
          {
         (yyval.str) = strdup((yyvsp[0].str));
     }
-#line 1451 "yacc.tab.c"
+#line 1462 "yacc.tab.c"
     break;
 
   case 33: /* list_items: list_items COMMA expr  */
-#line 176 "yacc.y"
+#line 187 "yacc.y"
                           {
         char *buf = malloc(strlen((yyvsp[-2].str)) + strlen((yyvsp[0].str)) + 3);
         sprintf(buf, "%s, %s", (yyvsp[-2].str), (yyvsp[0].str));
         (yyval.str) = buf;
     }
-#line 1461 "yacc.tab.c"
+#line 1472 "yacc.tab.c"
     break;
 
   case 34: /* condition: expr EQ expr  */
-#line 184 "yacc.y"
+#line 195 "yacc.y"
                      { asprintf(&(yyval.str), "%s == %s", (yyvsp[-2].str), (yyvsp[0].str)); }
-#line 1467 "yacc.tab.c"
+#line 1478 "yacc.tab.c"
     break;
 
   case 35: /* condition: expr NEQ expr  */
-#line 185 "yacc.y"
+#line 196 "yacc.y"
                      { asprintf(&(yyval.str), "%s != %s", (yyvsp[-2].str), (yyvsp[0].str)); }
-#line 1473 "yacc.tab.c"
+#line 1484 "yacc.tab.c"
     break;
 
   case 36: /* condition: expr GT expr  */
-#line 186 "yacc.y"
+#line 197 "yacc.y"
                      { asprintf(&(yyval.str), "%s > %s", (yyvsp[-2].str), (yyvsp[0].str)); }
-#line 1479 "yacc.tab.c"
+#line 1490 "yacc.tab.c"
     break;
 
   case 37: /* condition: expr LT expr  */
-#line 187 "yacc.y"
+#line 198 "yacc.y"
                      { asprintf(&(yyval.str), "%s < %s", (yyvsp[-2].str), (yyvsp[0].str)); }
-#line 1485 "yacc.tab.c"
+#line 1496 "yacc.tab.c"
     break;
 
   case 38: /* condition: expr GTE expr  */
-#line 188 "yacc.y"
+#line 199 "yacc.y"
                      { asprintf(&(yyval.str), "%s >= %s", (yyvsp[-2].str), (yyvsp[0].str)); }
-#line 1491 "yacc.tab.c"
+#line 1502 "yacc.tab.c"
     break;
 
   case 39: /* condition: expr LTE expr  */
-#line 189 "yacc.y"
+#line 200 "yacc.y"
                      { asprintf(&(yyval.str), "%s <= %s", (yyvsp[-2].str), (yyvsp[0].str)); }
-#line 1497 "yacc.tab.c"
+#line 1508 "yacc.tab.c"
     break;
 
   case 40: /* expr: expr PLUS expr  */
-#line 193 "yacc.y"
+#line 204 "yacc.y"
                      { asprintf(&(yyval.str), "%s + %s", (yyvsp[-2].str), (yyvsp[0].str)); }
-#line 1503 "yacc.tab.c"
+#line 1514 "yacc.tab.c"
     break;
 
   case 41: /* expr: expr MINUS expr  */
-#line 194 "yacc.y"
+#line 205 "yacc.y"
                      { asprintf(&(yyval.str), "%s - %s", (yyvsp[-2].str), (yyvsp[0].str)); }
-#line 1509 "yacc.tab.c"
+#line 1520 "yacc.tab.c"
     break;
 
   case 42: /* expr: expr MUL expr  */
-#line 195 "yacc.y"
+#line 206 "yacc.y"
                      { asprintf(&(yyval.str), "%s * %s", (yyvsp[-2].str), (yyvsp[0].str)); }
-#line 1515 "yacc.tab.c"
+#line 1526 "yacc.tab.c"
     break;
 
   case 43: /* expr: expr DIV expr  */
-#line 196 "yacc.y"
+#line 207 "yacc.y"
                      { asprintf(&(yyval.str), "%s / %s", (yyvsp[-2].str), (yyvsp[0].str)); }
-#line 1521 "yacc.tab.c"
+#line 1532 "yacc.tab.c"
     break;
 
   case 44: /* expr: ID  */
-#line 197 "yacc.y"
+#line 208 "yacc.y"
                      { (yyval.str) = strdup((yyvsp[0].str)); }
-#line 1527 "yacc.tab.c"
+#line 1538 "yacc.tab.c"
     break;
 
   case 45: /* expr: STR  */
-#line 198 "yacc.y"
+#line 209 "yacc.y"
                   { (yyval.str) = strdup((yyvsp[0].str)); }
-#line 1533 "yacc.tab.c"
+#line 1544 "yacc.tab.c"
     break;
 
   case 46: /* expr: NUM  */
-#line 199 "yacc.y"
+#line 210 "yacc.y"
                   {
         char buf[16]; sprintf(buf, "%d", (yyvsp[0].num));
         (yyval.str) = strdup(buf);
     }
-#line 1542 "yacc.tab.c"
+#line 1553 "yacc.tab.c"
     break;
 
   case 47: /* expr: SORT ID  */
-#line 203 "yacc.y"
+#line 214 "yacc.y"
             {
         asprintf(&(yyval.str), "sorted(%s)", (yyvsp[0].str));
     }
-#line 1550 "yacc.tab.c"
+#line 1561 "yacc.tab.c"
     break;
 
   case 48: /* expr: ID LBRACK STR RBRACK  */
-#line 206 "yacc.y"
+#line 217 "yacc.y"
                          {
         asprintf(&(yyval.str), "%s[%s]", (yyvsp[-3].str), (yyvsp[-1].str));
     }
-#line 1558 "yacc.tab.c"
+#line 1569 "yacc.tab.c"
     break;
 
   case 49: /* expr: ID LPAR expr_list RPAR  */
-#line 209 "yacc.y"
+#line 220 "yacc.y"
                            {
         asprintf(&(yyval.str), "%s(%s)", (yyvsp[-3].str), (yyvsp[-1].str));
     }
-#line 1566 "yacc.tab.c"
+#line 1577 "yacc.tab.c"
     break;
 
   case 50: /* expr: AVG LPAR ID RPAR  */
-#line 212 "yacc.y"
+#line 223 "yacc.y"
                      {
         asprintf(&(yyval.str) , "sum(%s) / len(%s)" , (yyvsp[-1].str),(yyvsp[-1].str));
   }
-#line 1574 "yacc.tab.c"
+#line 1585 "yacc.tab.c"
     break;
 
 
-#line 1578 "yacc.tab.c"
+#line 1589 "yacc.tab.c"
 
       default: break;
     }
@@ -1767,7 +1778,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 217 "yacc.y"
+#line 228 "yacc.y"
 
 
 int main() {

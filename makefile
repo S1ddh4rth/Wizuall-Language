@@ -28,6 +28,7 @@ compile: $(TARGET)
 
 clean:
 	rm -f lex.yy.c y.tab.c y.tab.h $(TARGET) $(OUTPUT)
+	rm -f bar.png line.png scatter.png
 
 show: clean compile
 	python3 out.py

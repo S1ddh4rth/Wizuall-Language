@@ -37,32 +37,43 @@ statement:
         fprintf(output, "%s = pd.read_csv(%s)\n", $2, $3);
     }
   | LINE ID ID SC {
-        fprintf(output,
-    "plt.figure(figsize=(8, 4))\n"
-    "plt.plot(df['%s'], df['%s'])\n"
-    "plt.xlabel('%s')\n"
-    "plt.ylabel('%s')\n"
-    "plt.savefig('line.png')\n",
-    $2, $3, $2, $3);
+        print_indent();
+        fprintf(output, "plt.figure(figsize=(8, 4))\n");
+        print_indent();
+        fprintf(output, "plt.plot(df['%s'], df['%s'])\n", $2, $3);
+        print_indent();
+        fprintf(output, "plt.xlabel('%s')\n", $2);
+        print_indent();
+        fprintf(output, "plt.ylabel('%s')\n", $3);
+        print_indent();
+        fprintf(output, "plt.savefig('line.png')\n");
+
     }
   | BAR ID SC {
-        fprintf(output,
-    "plt.figure(figsize=(8, 4))\n"
-    "plt.hist(df['%s'])\n"
-    "plt.xlabel('%s')\n"
-    "plt.ylabel('Frequency')\n"
-    "plt.savefig('bar.png')\n",
-    $2, $2);
+        print_indent();
+        fprintf(output, "plt.figure(figsize=(8, 4))\n");
+        print_indent();
+        fprintf(output, "plt.hist(df['%s'])\n", $2);
+        print_indent();
+        fprintf(output, "plt.xlabel('%s')\n", $2);
+        print_indent();
+        fprintf(output, "plt.ylabel('Frequency')\n");
+        print_indent();
+        fprintf(output, "plt.savefig('bar.png')\n");
+        print_indent();
 
     }
   | SCATTER ID ID SC {
-        fprintf(output,
-    "plt.figure(figsize=(8, 4))\n"
-    "plt.scatter(df['%s'], df['%s'])\n"
-    "plt.xlabel('%s')\n"
-    "plt.ylabel('%s')\n"
-    "plt.savefig('scatter.png')\n",
-    $2, $3, $2, $3);
+        print_indent();
+        fprintf(output, "plt.figure(figsize=(8, 4))\n");
+        print_indent();
+        fprintf(output, "plt.scatter(df['%s'], df['%s'])\n", $2, $3);
+        print_indent();
+        fprintf(output, "plt.xlabel('%s')\n", $2);
+        print_indent();
+        fprintf(output, "plt.ylabel('%s')\n", $3);
+        print_indent();
+        fprintf(output, "plt.savefig('scatter.png')\n");
 
     }
   | PRINT LPAR expr RPAR SC {
