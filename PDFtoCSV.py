@@ -1,5 +1,4 @@
-
-import tabula
+import tabula # type: ignore
 import pandas as pd
 df = tabula.read_pdf("input.pdf", pages = 1)[0] 
 df.to_csv('output.csv')
