@@ -18,9 +18,9 @@ void print_indent() { for (int i = 0; i < indent; i++) fprintf(output, "    "); 
 
 %token <num> NUM
 %token <str> ID STR
-%type <str> parameters p_items statement func_defn condition list list_items expr expr_list assignment
+%type <str> parameters p_items statement func_defn condition list list_items expr expr_list assignment return_stmt program_with_return
 
-%token OPEN LINE BAR SCATTER IF FOR WHILE PRINT SORT FUN FROM TO AVG ASSIGN PLUS MINUS MUL DIV SC COMMA LPAR RPAR LCURL RCURL LBRACK RBRACK EQ NEQ GTE LTE GT LT
+%token OPEN LINE BAR SCATTER IF FOR WHILE PRINT SORT FUN FROM TO AVG ASSIGN PLUS MINUS MUL DIV SC COMMA LPAR RPAR LCURL RCURL LBRACK RBRACK EQ NEQ GTE LTE GT LT RETURN
 
 %start program
 
@@ -125,10 +125,26 @@ func_defn:
         print_indent();
         fprintf(output, "def %s(%s):\n", $2, $4);
         indent++;
-    } program RCURL {
+    }
+    program_with_return
+    RCURL {
         indent--;
     }
-  ;
+;
+
+program_with_return:
+    program return_stmt
+    {
+        fprintf(output, "    return %s\n", $2);
+    }
+;
+
+return_stmt:
+    RETURN expr SC {
+        $$ = $2; // This can be used to reference the return expression
+    }
+;
+
 
 assignment:
     ID ASSIGN expr {

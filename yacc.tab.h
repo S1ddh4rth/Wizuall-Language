@@ -88,7 +88,8 @@ extern int yydebug;
     GTE = 289,                     /* GTE  */
     LTE = 290,                     /* LTE  */
     GT = 291,                      /* GT  */
-    LT = 292                       /* LT  */
+    LT = 292,                      /* LT  */
+    RETURN = 293                   /* RETURN  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -102,7 +103,7 @@ union YYSTYPE
     int num;
     char* str;
 
-#line 106 "yacc.tab.h"
+#line 107 "yacc.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

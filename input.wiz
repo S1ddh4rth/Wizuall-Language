@@ -31,6 +31,8 @@ while (i > 2){
 function test(a,b){
   print(a);
   print(b+2);
+  return a;
 }
-test(sorted_ages,30);
+new = test(sorted_ages,30);
+print(new);
 

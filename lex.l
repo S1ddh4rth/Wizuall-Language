@@ -19,6 +19,7 @@
 "from"            { return FROM;}
 "avg"             { return AVG;}
 "to"              { return TO;}
+"return"          {return RETURN;}
 "=="              { return EQ; }
 "!="              { return NEQ; }
 ">="              { return GTE; }

@@ -7,7 +7,7 @@ CC = gcc
 LEX_FILE = lex.l
 YACC_FILE = yacc.y
 TARGET = myplotter
-INPUT = input.txt
+INPUT = input.wiz
 OUTPUT = out.py
 
 # Build steps
