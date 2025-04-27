@@ -16,7 +16,7 @@ This project builds a **Lex and Bison-based compiler** that parses Wizuall code 
 
 ## Example Flow
 
-1. Write your Wizuall program (`.wizu` file).
+1. Write your Wizuall program (`.wiz` file).
 2. Run the compiler to generate Python code.
 3. Execute the Python script to visualize your data.
 
