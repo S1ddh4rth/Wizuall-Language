@@ -1,0 +1,36 @@
+OPEN df "data.csv" ;
+salary = df["salary"];
+exp = df["exp"];
+age = df["age"];
+
+avg_salary = avg(salary);
+avg_age = avg(age);
+
+
+if (avg_salary > 0){
+  print(avg_salary);
+}
+
+sorted_ages = sort age;
+print(sorted_ages);
+
+LINE name salary ;
+SCATTER salary exp ;
+BAR height ;
+
+for i from 3 to 7 {
+  print(i);
+}
+
+i = 5;
+while (i > 2){
+    i = i - 1;
+    print(i);
+}
+
+function test(a,b){
+  print(a);
+  print(b+2);
+}
+test(sorted_ages,30);
+
