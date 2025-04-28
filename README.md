@@ -13,16 +13,19 @@ This project builds a **Lex and Bison-based compiler** that parses Wizuall code 
 - **Input Data**: Visualization input is provided through CSV files.
 
 ---
-
-## Example Flow
-
-1. Write your Wizuall program (`.wiz` file).
-2. Run the compiler to generate Python code.
-3. Execute the Python script to visualize your data.
-
----
 ### System Dependencies
 
 Make sure you run the setup script
 ```python
 bash setup.sh
+```
+---
+
+## Example Flow
+
+1. Write your Wizuall program (`.wiz` file).
+2. Run the following command to make and execute the files
+ ```python
+make show
+```
+
